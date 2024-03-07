@@ -10,7 +10,7 @@ class Movie{
     public $genres;
 
     //costruttore
-    function __construct($_title, $_releaseDate, $_director, $_starring, $_genres){
+    function __construct($_title, $_releaseDate, $_director, Starring $_starring, $_genres){
         $this->title = $_title;
         $this->releaseDate = $_releaseDate;
         $this->director = $_director;
@@ -32,9 +32,42 @@ class Movie{
 
 }
 
+//classe attori, max 3 attori
+class Starring{
+    public $actor1;
+    public $actor2;
+    public $actor3;
+
+    public function __construct($_actor1, $_actor2, $_actor3){
+        $this->actor1 = $_actor1;
+        $this->actor2 = $_actor2;
+        $this->actor3 = $_actor3;
+    }
+
+    public function changeActors($num, $_actor1, $_actor2, $_actor3){
+        switch ($num) {
+            case 1:
+                $this->actor1 = $_actor1;
+                break;
+            case 2:
+                $this->actor1 = $_actor1;
+                $this->actor2 = $_actor2;
+                break;
+            case 3:
+                $this->actor1 = $_actor1;
+                $this->actor2 = $_actor2;
+                $this->actor3 = $_actor3;
+                break;
+            default:
+                echo("Error: invalid arguments");
+                break;
+        }
+    }
+}
+
 //creazione istanza della classe Movie
-$movie1 = new Movie('The Godfather', 1972, 'Francis Ford Coppola', 'actors', 'genres');
-$movie2 = new Movie('Titanic', 1997, 'James Cameron', 'actors', 'genres');
+$movie1 = new Movie('The Godfather', 1972, 'Francis Ford Coppola', new Starring('Marlon Brando', 'Al Pacino', 'Robert Duvall'), 'genres');
+$movie2 = new Movie('Titanic', 1997, 'James Cameron', new Starring('Leonardo DiCaprio', 'Kate Winslet', 'Billy Zane'), 'genres');
 
 
 var_dump($movie1, $movie2);
@@ -58,7 +91,10 @@ var_dump($movie1, $movie2);
 
         $movie1->changeDirector('Quentin Tarantino');
 
+        $movie1->starring->changeActors(3,'John Travolta', 'Uma Thurman', 'Samuel L. Jackson');
+        
         var_dump($movie1);
+        
 
     ?>
 
